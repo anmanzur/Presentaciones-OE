@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Iniciativa Promesa Ventana ME1 · MLA · 2026</title>
+<style>
+:root{
+  --ml-yellow:#FFE600; --ml-blue:#2D3277; --ml-light:#F5F6FA;
+  --ml-green:#00A650; --ml-red:#E02020; --ml-orange:#FF7733;
+  --text:#1A1A2E; --border:#D8DAE5;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--ml-light);color:var(--text);padding:28px 20px;max-width:1300px;margin:0 auto;}
+
+/* HEADER */
+.header{background:var(--ml-blue);border-radius:14px;padding:30px 36px;display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;}
+.header h1{color:var(--ml-yellow);font-size:20px;font-weight:800;letter-spacing:-.3px;}
+.header p{color:#B0B5D0;font-size:12px;margin-top:5px;line-height:1.5;}
+.badge-group{display:flex;gap:8px;flex-direction:column;align-items:flex-end;}
+.badge{background:var(--ml-yellow);color:var(--ml-blue);font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;text-transform:uppercase;white-space:nowrap;}
+.badge-green{background:var(--ml-green);color:#fff;}
+
+/* NAV */
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.nav a{background:#fff;border:1px solid var(--border);color:var(--ml-blue);font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;text-decoration:none;transition:all .15s;}
+.nav a:hover{background:var(--ml-blue);color:#fff;}
+
+/* SECTIONS */
+.section{margin-bottom:40px;}
+.section-title{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--ml-blue);margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid var(--ml-yellow);}
+
+/* OBJECTIVE CARD */
+.obj-card{background:var(--ml-blue);border-radius:12px;padding:24px 30px;color:#fff;margin-bottom:0;}
+.obj-card h3{color:var(--ml-yellow);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;}
+.obj-card p{font-size:13.5px;line-height:1.8;color:#D0D5F0;}
+.obj-card strong{color:var(--ml-yellow);}
+
+/* BEFORE/AFTER GRID */
+.ba-wrapper{display:grid;grid-template-columns:1fr 40px 1fr;gap:0;align-items:start;}
+.ba-side{background:#fff;border-radius:12px;border:2px solid var(--border);padding:20px;}
+.ba-side.after{border-color:var(--ml-green);box-shadow:0 0 0 3px rgba(0,166,80,.15);}
+.ba-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;padding:5px 12px;border-radius:20px;display:inline-block;margin-bottom:14px;}
+.ba-label.antes{background:#F3F4F6;color:#6B7280;}
+.ba-label.despues{background:#E6F7EF;color:var(--ml-green);}
+.ba-kpi{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);}
+.ba-kpi:last-child{border-bottom:none;}
+.ba-kpi .name{font-size:12px;color:#374151;font-weight:600;}
+.ba-kpi .val{font-size:18px;font-weight:800;}
+.ba-kpi .sub{font-size:10px;color:#9CA3AF;text-align:right;}
+.arrow-col{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;padding:20px 0;margin-top:38px;}
+.arrow-item{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.arrow-item .delta{font-size:11px;font-weight:800;padding:3px 8px;border-radius:8px;}
+.delta-g{background:#E6F7EF;color:var(--ml-green);}
+.delta-r{background:#FEECEC;color:var(--ml-red);}
+.delta-o{background:#FFF3E6;color:var(--ml-orange);}
+
+/* KPI SUMMARY CARDS */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.kpi-card{background:#fff;border-radius:10px;border:1px solid var(--border);padding:16px;text-align:center;}
+.kpi-card .lbl{font-size:10px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.kpi-card .val{font-size:24px;font-weight:800;color:var(--ml-blue);}
+.kpi-card .sub{font-size:11px;color:#9CA3AF;margin-top:2px;}
+.delta-pill{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 9px;border-radius:10px;margin-top:5px;}
+.up{background:#E6F7EF;color:var(--ml-green);}
+.down{background:#FEECEC;color:var(--ml-red);}
+.warn{background:#FFF3E6;color:var(--ml-orange);}
+
+/* TABLES */
+.tbl-wrap{background:#fff;border-radius:10px;border:1px solid var(--border);overflow:auto;margin-bottom:16px;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+thead th{background:var(--ml-blue);color:#fff;font-weight:600;padding:10px 14px;text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;}
+thead th.th-l{text-align:left;}
+tbody tr:nth-child(even){background:#F9FAFB;}
+tbody tr:hover{background:#EEF2FF;}
+tbody td{padding:9px 14px;border-bottom:1px solid var(--border);text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums;}
+tbody td.td-l{text-align:left;font-weight:700;color:var(--ml-blue);}
+.row-window{background:#EEF9EE !important;}
+.row-window td{font-weight:600;}
+tfoot td{text-align:center;font-weight:700;background:#EEF2FF;border-top:2px solid var(--ml-blue);padding:10px 14px;}
+tfoot td.td-l{text-align:left;}
+
+.g{color:var(--ml-green);font-weight:700;}
+.r{color:var(--ml-red);font-weight:700;}
+.o{color:var(--ml-orange);font-weight:700;}
+.gr{color:#6B7280;}
+
+/* CALLOUTS */
+.callout{background:#EEF2FF;border-left:4px solid var(--ml-blue);border-radius:0 8px 8px 0;padding:14px 18px;margin:14px 0;font-size:13px;line-height:1.7;}
+.callout strong{color:var(--ml-blue);}
+.callout-green{background:#E6F7EF;border-left-color:var(--ml-green);}
+.callout-warn{background:#FFF8E6;border-left-color:var(--ml-orange);}
+.callout-red{background:#FEECEC;border-left-color:var(--ml-red);}
+
+/* CONCLUSIONS */
+.conclusion-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.concl-card{background:#fff;border-radius:10px;border:1px solid var(--border);padding:20px;}
+.concl-card h4{font-size:13px;font-weight:700;color:var(--ml-blue);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.concl-card p{font-size:12.5px;color:#374151;line-height:1.7;}
+
+/* WAVE 2 */
+.wave2{background:linear-gradient(135deg,var(--ml-blue),#1a1f5c);border-radius:14px;padding:28px 32px;color:#fff;margin-bottom:0;}
+.wave2 h3{color:var(--ml-yellow);font-size:18px;font-weight:800;margin-bottom:6px;}
+.wave2 .sub{color:#B0B5D0;font-size:12px;margin-bottom:20px;}
+.wave2-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.wave2-item{background:rgba(255,255,255,.08);border-radius:10px;padding:16px;}
+.wave2-item .num{font-size:28px;font-weight:800;color:var(--ml-yellow);}
+.wave2-item .label{font-size:11px;color:#B0B5D0;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.wave2-item .desc{font-size:12px;color:#D0D5F0;margin-top:6px;line-height:1.5;}
+
+/* SUMMARY */
+.summary{background:#fff;border-radius:10px;border:1px solid var(--border);padding:24px 28px;}
+.summary p{font-size:13px;line-height:1.8;color:#374151;margin-bottom:10px;}
+.chip{display:inline-block;background:var(--ml-yellow);color:var(--ml-blue);font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;text-transform:uppercase;letter-spacing:.4px;margin-right:5px;}
+
+.footer{text-align:center;font-size:11px;color:#9CA3AF;padding-top:16px;border-top:1px solid var(--border);margin-top:10px;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <h1>Iniciativa Promesa Ventana ME1 · MLA</h1>
+    <p>Análisis de impacto · Encendido Wave 1: 7 de mayo 2026<br>
+    Sellers activados: 80 objetivo · 69 con órdenes WINDOW confirmadas · Verticales: H&amp;B</p>
+  </div>
+  <div class="badge-group">
+    <div class="badge">MLA · ME1</div>
+    <div class="badge badge-green">Wave 1 · Activa</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <a href="#objetivo">🎯 Objetivo</a>
+  <a href="#antes-despues">📊 Antes vs Después</a>
+  <a href="#mensual">📅 KPIs Mensuales</a>
+  <a href="#conclusiones">💡 Conclusiones</a>
+  <a href="#wave2">🚀 Wave 2</a>
+</div>
+
+
+<!-- ═══ 1. OBJETIVO ═══ -->
+<div class="section" id="objetivo">
+  <div class="section-title">🎯 Objetivo de la Iniciativa</div>
+  <div class="obj-card">
+    <h3>¿Qué es la Promesa Ventana?</h3>
+    <p>
+      El universo ME1 MLA tiene un problema estructural de calibración de promesa: el <strong>% Early ronda el 48-49%</strong> consistentemente
+      y el <strong>% On Time no supera el 13%</strong>. Esto significa que casi la mitad de los paquetes llegan antes de la fecha prometida al comprador
+      — señal de que la promesa fija es demasiado conservadora. El comprador ve una fecha de entrega más lejana de lo real, lo que
+      no mejora su experiencia y genera frustración cuando hay cualquier desvío.
+    </p>
+    <br>
+    <p>
+      La <strong>Promesa Ventana</strong> tiende a corregir esta distorsión al reemplazar la fecha fija por un <strong>rango estimado de entrega</strong>
+      (ej. "llega entre el lunes 12 y el miércoles 14"), basado en tiempos más representativos de la operación de cada seller.
+      El objetivo es brindar una expectativa de entrega más precisa al comprador, favoreciendo que más entregas se realicen dentro del rango prometido.
+      Como resultado, se busca mejorar la percepción de confiabilidad de la promesa, reducir reclamos asociados a la entrega
+      y contribuir a una mejor experiencia del comprador (CR Buyer).
+    </p>
+    <br>
+    <p>
+      <strong>Wave 1:</strong> activación el <strong>7 de mayo 2026</strong> en 80 sellers objetivo ME1 MLA Heavy &amp; Bulky.
+      69 sellers confirmaron órdenes con promesa WINDOW en mayo.
+    </p>
+  </div>
+</div>
+
+
+<!-- ═══ 2. ANTES vs DESPUÉS ═══ -->
+<div class="section" id="antes-despues">
+  <div class="section-title">📊 Performance Antes vs Después del Encendido · (0–30 días)</div>
+  <p style="font-size:12px;color:#6B7280;margin-bottom:16px;">Comparación sobre los mismos 69 sellers · 0–30d antes: órdenes del 7 de abril al 7 de mayo · 1–30d después: órdenes del 8 de mayo al 7 de junio</p>
+
+  <!-- Cards estilo tablero — 4 buckets (omitimos 31-60d después por datos parciales) -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:4px;">
+
+    <!-- 61d-90d antes -->
+    <div style="background:#fff;border-radius:12px;border:2px solid #E5E7EB;padding:20px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;background:#F3F4F6;color:#6B7280;padding:5px 12px;border-radius:20px;display:inline-block;margin-bottom:16px;">61D A 90D ANTES</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">CLAIMS</div>
+      <div style="font-size:32px;font-weight:800;color:var(--ml-red);margin-bottom:14px;">2,450</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">CR BUYER</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-red);margin-bottom:14px;">16.0%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">DATA ENTREGA</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:14px;">7.1%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">% EARLY</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:10px;">65.4%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">% ON TIME</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:14px;">22.0%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">ORDERS</div>
+      <div style="font-size:14px;color:#6B7280;font-weight:600;">15,282</div>
+    </div>
+
+    <!-- 31d-60d antes -->
+    <div style="background:#fff;border-radius:12px;border:2px solid #E5E7EB;padding:20px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;background:#F3F4F6;color:#6B7280;padding:5px 12px;border-radius:20px;display:inline-block;margin-bottom:16px;">31D A 60D ANTES</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">CLAIMS</div>
+      <div style="font-size:32px;font-weight:800;color:var(--ml-red);margin-bottom:14px;">2,016</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">CR BUYER</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:14px;">13.7%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">DATA ENTREGA</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:14px;">5.3%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">% EARLY</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:10px;">72.3%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">% ON TIME</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:14px;">17.5%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">ORDERS</div>
+      <div style="font-size:14px;color:#6B7280;font-weight:600;">14,663</div>
+    </div>
+
+    <!-- 0d-30d antes -->
+    <div style="background:#fff;border-radius:12px;border:2px solid #E5E7EB;padding:20px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;background:#F3F4F6;color:#6B7280;padding:5px 12px;border-radius:20px;display:inline-block;margin-bottom:16px;">0D A 30D ANTES</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">CLAIMS</div>
+      <div style="font-size:32px;font-weight:800;color:var(--ml-orange);margin-bottom:14px;">1,614</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">CR BUYER</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:14px;">13.8%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">DATA ENTREGA</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:14px;">4.9%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">% EARLY</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:10px;">67.7%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">% ON TIME</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-orange);margin-bottom:14px;">20.2%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">ORDERS</div>
+      <div style="font-size:14px;color:#6B7280;font-weight:600;">11,735</div>
+    </div>
+
+    <!-- 1d-30d después ★ -->
+    <div style="background:#F0FFF4;border-radius:12px;border:2px solid var(--ml-green);box-shadow:0 0 0 3px rgba(0,166,80,.12);padding:20px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;background:#E6F7EF;color:var(--ml-green);padding:5px 12px;border-radius:20px;display:inline-block;margin-bottom:16px;">1D A 30D DESPUÉS ★</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">CLAIMS</div>
+      <div style="font-size:32px;font-weight:800;color:var(--ml-green);margin-bottom:14px;">1,857</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">CR BUYER</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-green);margin-bottom:14px;">10.5%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">DATA ENTREGA</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-green);margin-bottom:14px;">3.5%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">% EARLY</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-green);margin-bottom:10px;">56.2%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">% ON TIME</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ml-green);margin-bottom:14px;">34.4%</div>
+      <div style="font-size:10px;color:#9CA3AF;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">ORDERS</div>
+      <div style="font-size:14px;color:#6B7280;font-weight:600;">17,646</div>
+    </div>
+
+  </div>
+
+  <div class="callout callout-green" style="margin-top:16px;">
+    <strong>Resultado del encendido Wave 1:</strong> El % Early bajó de <strong>67.7% → 56.2%</strong> y el % On Time subió de <strong>20.2% → 34.4%</strong> — la promesa ventana está calibrando mejor el rango real de entrega. Como consecuencia directa, el CR Buyer cayó un 24% (13.8% → 10.5%) y el CR de Entrega un 29% (4.9% → 3.5%).
+  </div>
+  <div class="callout callout-warn">
+    <strong>Oportunidad en On Time:</strong> El % On Time pasó de 20.2% → 34.4% post-encendido (+14pp), pero el Early sigue en 56.2%. La oportunidad no es solo técnica — requiere <strong>trabajo cercano con los sellers e integradores ofensores</strong>: identificar los que concentran mayor Early, entender si el desvío es por configuración de handling time, restricciones del integrador, o comportamiento operativo, y actuar caso a caso. <strong>Target: Early ≤ 10% · On Time ≥ 87%</strong> — que la promesa ventana sea percibida como precisa y confiable por el comprador.
+  </div>
+</div>
+
+
+<!-- ═══ 3. KPIs MENSUALES ═══ -->
+<div class="section" id="mensual">
+  <div class="section-title">📅 KPIs Mensuales — Impacto de la Iniciativa a Nivel Total ME1 MLA</div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="th-l">Mes</th>
+          <th>Orders</th>
+          <th>Sellers</th>
+          <th>NMV USD</th>
+          <th>Claims Total</th>
+          <th>CR%</th>
+          <th>CR Entrega%</th>
+          <th>% Early</th>
+          <th>% On Time</th>
+          <th>% Delay</th>
+          <th>% SLA OK</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-l">ene-26</td>
+          <td>135,596</td><td>970</td><td>$45.3M</td>
+          <td>25,829</td><td class="r">19.0%</td><td class="o">8.1%</td>
+          <td class="o">49.4%</td><td class="gr">13.2%</td><td class="o">37.3%</td><td class="o">62.6%</td>
+        </tr>
+        <tr>
+          <td class="td-l">feb-26</td>
+          <td>98,418</td><td>919</td><td>$32.2M</td>
+          <td>20,784</td><td class="r">21.1%</td><td class="r">9.7%</td>
+          <td class="o">48.4%</td><td class="gr">13.9%</td><td class="o">37.7%</td><td class="o">62.3%</td>
+        </tr>
+        <tr>
+          <td class="td-l">mar-26</td>
+          <td>112,593</td><td>943</td><td>$37.2M</td>
+          <td>22,291</td><td class="r">19.8%</td><td class="o">8.6%</td>
+          <td class="o">48.8%</td><td class="gr">12.9%</td><td class="o">38.3%</td><td class="o">61.7%</td>
+        </tr>
+        <tr>
+          <td class="td-l">abr-26</td>
+          <td>91,546</td><td>950</td><td>$31.4M</td>
+          <td>17,747</td><td class="r">19.4%</td><td class="o">8.6%</td>
+          <td class="o">48.7%</td><td class="gr">12.3%</td><td class="r">39.0%</td><td class="o">61.0%</td>
+        </tr>
+        <tr>
+          <td class="td-l">may-26</td>
+          <td>131,995</td><td>742</td><td>$52.7M</td>
+          <td>23,791</td><td class="o">18.2%</td><td class="o">8.2%</td>
+          <td class="o">47.8%</td><td class="gr">12.8%</td><td class="r">39.4%</td><td class="o">60.6%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>Impacto a nivel total:</strong> Los 69 sellers WINDOW representan el 9.4% de las órdenes de mayo. A pesar de ser una fracción del universo, su CR de 9.5% contrasta con el 19.1% de FIXED. El SLA OK de los sellers WINDOW alcanza el 90.7% vs 57.9% en FIXED — el mayor diferencial del período, reforzando la urgencia de escalar la iniciativa.
+  </div>
+
+  <!-- Tendencia delay -->
+  <div class="callout callout-red">
+    <strong>Tendencia del Delay FIXED — señal de alerta:</strong>
+    ene 35.8% → feb 39.3% → mar 38.2% → abr 39.2% → <strong>may 42.1%</strong>.
+    Cinco meses consecutivos por encima del 35% sin mejora orgánica. La Promesa Ventana es la única intervención que mostró reversión de esta tendencia en los sellers donde fue activada.
+  </div>
+</div>
+
+
+<!-- ═══ 4. CONCLUSIONES ═══ -->
+<div class="section" id="conclusiones">
+  <div class="section-title">💡 Conclusiones y Oportunidades</div>
+
+  <div class="conclusion-grid">
+    <div class="concl-card">
+      <h4>✅ La iniciativa funciona — Early baja, On Time sube</h4>
+      <p>El Early bajó de 67.7% → 56.2% y el On Time subió de 20.2% → 34.4% en los primeros 30 días post-encendido. Más entregas caen dentro del rango prometido. El mecanismo es claro: mejor calibración de promesa → comprador con expectativa correcta → menos frustración → CR Buyer -24%, CR Entrega -29%.</p>
+    </div>
+    <div class="concl-card">
+      <h4>⚠️ Oportunidad — On Time: trabajo con sellers e integradores ofensores</h4>
+      <p>El On Time subió de 20.2% → 34.4% (+14pp) con el encendido, pero el Early sigue en 56.2%. <strong>Target: Early ≤ 10% · On Time ≥ 87%.</strong> La próxima palanca es trabajar de cerca con los <strong>sellers e integradores con mayor % de Early</strong>: revisar su configuración de handling time, entender las restricciones operativas de cada integrador (ZIPPIN, ANDREANI, ENVIOPACK) y recalibrar el rango caso a caso. El universo FIXED sin window sigue en Early ~48-49% y On Time ~12-13% — sin intervención directa, no mejora solo.</p>
+    </div>
+    <div class="concl-card">
+      <h4>📊 Contexto operativo del negocio</h4>
+      <p>El Early crónico de ~48-49% y el On Time de ~12-13% en el universo FIXED reflejan que la promesa fija sobreestima el tiempo de entrega de forma sistemática. La Promesa Ventana no apunta directamente al delay operativo — su objetivo es calibrar la promesa para que refleje mejor la realidad de entrega, mejorando Early y On Time. Las mejoras en otras dimensiones son consecuencia indirecta de una mejor gestión de la expectativa del comprador.</p>
+    </div>
+    <div class="concl-card">
+      <h4>📊 Impacto a nivel total aún acotado</h4>
+      <p>Con 69 sellers activos (9.4% de las órdenes de mayo), el impacto en el Early y On Time total del negocio es aún marginal. Para mover los indicadores a nivel ME1 MLA, se necesita aumentar la cobertura con Wave 2 y trabajar de cerca con sellers e integradores para calibrar el rango de la ventana.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>Próximo foco operativo — sellers con On Time bajo:</strong> Identificar los sellers activados en Wave 1 con el mayor % de Early y menor % de On Time, revisar su configuración de handling time y ajustar el rango de la ventana. Esta recalibración puede subir el On Time sin necesitar nuevas activaciones.
+  </div>
+</div>
+
+
+<!-- ═══ 5. WAVE 2 ═══ -->
+<div class="section" id="wave2">
+  <div class="section-title">🚀 Wave 2 — Expansión de la Iniciativa</div>
+  <div class="wave2" style="margin-bottom:20px;">
+    <h3>Lanzamiento de Wave 2</h3>
+    <div class="sub">Ampliación de cobertura · ME1 MLA · Heavy &amp; Bulky</div>
+
+    <div class="wave2-grid">
+      <div class="wave2-item">
+        <div class="num">80</div>
+        <div class="label">Sellers Wave 1</div>
+        <div class="desc">Sellers activados el 7/05/2026. Resultados validados: CR -24%, On Time +14pp.</div>
+      </div>
+      <div class="wave2-item">
+        <div class="num">89</div>
+        <div class="label">Sellers Wave 2</div>
+        <div class="desc">Sellers ME1 MLA identificados para activación. Pendiente notificación y confirmación de encendido.</div>
+      </div>
+      <div class="wave2-item">
+        <div class="num">87%</div>
+        <div class="label">On Time objetivo</div>
+        <div class="desc">Target de On Time post Wave 2. Early ≤ 10%. Requiere trabajo con sellers e integradores ofensores para calibrar el rango de la ventana.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de 89 sellers Wave 2 -->
+  <p style="font-size:12px;font-weight:600;color:#6B7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">▸ Sellers identificados para Wave 2 — pendiente activación</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="th-l">Seller ID</th>
+          <th class="th-l">Seller Name</th>
+          <th>Integrador</th>
+          <th>Avg Promesa (d)</th>
+          <th>Avg Entrega (d)</th>
+          <th>Orders Delivered</th>
+          <th>SLA%</th>
+          <th>% Delay</th>
+          <th>Notificado</th>
+          <th>Activar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-l">543264794</td><td class="td-l">FISHER-TIENDAOFICIAL</td><td>ZIPPIN_MLA</td><td>12.2</td><td>6.7</td><td>4,251</td><td class="g">91.4%</td><td class="o">8.6%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">42113546</td><td class="td-l">CHAPAROLO</td><td>AXADO</td><td>16.0</td><td>10.1</td><td>1,069</td><td class="g">91.8%</td><td class="o">8.2%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">21308690</td><td class="td-l">DOLPHIN PESCA</td><td>ZIPPIN_MLA</td><td>17.2</td><td>11.4</td><td>592</td><td class="g">90.2%</td><td class="o">9.8%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">165551415</td><td class="td-l">TIENDA.OFIT.COM.AR</td><td>ZIPPIN_MLA</td><td>12.7</td><td>7.9</td><td>458</td><td class="g">92.1%</td><td class="o">7.9%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">784244583</td><td class="td-l">MIXSHOP_ARG</td><td>ZIPPIN_MLA</td><td>13.2</td><td>8.9</td><td>354</td><td class="g">93.2%</td><td class="g">6.8%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">678854079</td><td class="td-l">FRAMAREVOLUCIONSAFRAMAREVOL</td><td>ZIPPIN_MLA</td><td>14.2</td><td>9.0</td><td>288</td><td class="g">90.3%</td><td class="o">9.7%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">383559898</td><td class="td-l">TODOEN AUTOPARTES</td><td>ZIPPIN_MLA</td><td>13.8</td><td>9.3</td><td>195</td><td class="g">90.8%</td><td class="o">9.2%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">26142695</td><td class="td-l">HIERROS TORRENT</td><td>ZIPPIN_MLA</td><td>18.6</td><td>11.1</td><td>174</td><td class="g">92.5%</td><td class="o">7.5%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">9950616</td><td class="td-l">EXTINCENTER</td><td>ZIPPIN_MLA</td><td>12.0</td><td>7.6</td><td>167</td><td class="g">90.4%</td><td class="o">9.6%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">469899507</td><td class="td-l">BELLACHARM</td><td>ZIPPIN_MLA</td><td>12.6</td><td>8.3</td><td>159</td><td class="g">91.8%</td><td class="o">8.2%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">153491318</td><td class="td-l">DELLOREAN</td><td>ENVIOPACK_MLA</td><td>16.2</td><td>9.6</td><td>151</td><td class="g">90.1%</td><td class="o">9.9%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">225505286</td><td class="td-l">WAKEFIELD ARGENTINA</td><td>ZIPPIN_MLA</td><td>15.8</td><td>9.5</td><td>131</td><td class="g">90.8%</td><td class="o">9.2%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">219244213</td><td class="td-l">TECNOSIM SA</td><td>ZIPPIN_MLA</td><td>12.3</td><td>7.8</td><td>114</td><td class="g">90.4%</td><td class="o">9.7%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">491370334</td><td class="td-l">ALONSO NEUMATICOSWEB</td><td>ZIPPIN_MLA</td><td>16.7</td><td>11.0</td><td>112</td><td class="g">92.0%</td><td class="o">8.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1391120069</td><td class="td-l">MAXTUNING STORE</td><td>ZIPPIN_MLA</td><td>15.3</td><td>10.8</td><td>107</td><td class="g">90.7%</td><td class="o">9.4%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">594439720</td><td class="td-l">SERGIOPERFUMERIAS</td><td>ZIPPIN_MLA</td><td>12.8</td><td>8.0</td><td>92</td><td class="g">93.5%</td><td class="g">6.5%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">240355409</td><td class="td-l">RUEDASUR NEUMATICOS</td><td>ZIPPIN_MLA</td><td>16.4</td><td>10.7</td><td>87</td><td class="g">93.1%</td><td class="g">6.9%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">218139733</td><td class="td-l">FERRETERIAPLAZOLETASANMIGUEL</td><td>ZIPPIN_MLA</td><td>15.3</td><td>9.7</td><td>83</td><td class="g">92.8%</td><td class="o">7.2%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">75279749</td><td class="td-l">MADISON_TECNO</td><td>ZIPPIN_MLA</td><td>10.4</td><td>7.1</td><td>75</td><td class="g">94.7%</td><td class="g">5.3%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1839575329</td><td class="td-l">UPSHOP_ARG</td><td>ZIPPIN_MLA</td><td>9.4</td><td>6.3</td><td>73</td><td class="g">94.5%</td><td class="g">5.5%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">2437301398</td><td class="td-l">TIENDASMARTANK</td><td>ZIPPIN_MLA</td><td>9.2</td><td>4.1</td><td>69</td><td class="g">98.6%</td><td class="g">1.5%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">236205447</td><td class="td-l">LEBURÉ</td><td>ENVIOPACK_MLA</td><td>14.1</td><td>5.7</td><td>62</td><td class="g">93.6%</td><td class="g">6.5%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">459376955</td><td class="td-l">CHANGO_BRANDS</td><td>AXADO</td><td>9.2</td><td>5.8</td><td>60</td><td class="g">93.3%</td><td class="g">6.7%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">63994897</td><td class="td-l">BIGTOYS4X4</td><td>ZIPPIN_MLA</td><td>20.6</td><td>13.5</td><td>53</td><td class="g">92.5%</td><td class="o">7.6%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">172177242</td><td class="td-l">MILER DISTRIBUIDORA</td><td>ZIPPIN_MLA</td><td>18.1</td><td>10.3</td><td>49</td><td class="g">95.9%</td><td class="g">4.1%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">428134377</td><td class="td-l">HUMAITÁ SA</td><td>ZIPPIN_MLA</td><td>12.1</td><td>7.8</td><td>45</td><td class="g">95.6%</td><td class="g">4.4%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1235437866</td><td class="td-l">REDES BIT</td><td>ANDREANI</td><td>12.9</td><td>9.2</td><td>45</td><td class="g">91.1%</td><td class="o">8.9%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">2715993</td><td class="td-l">FUEGOSAGRADOARG</td><td>ZIPPIN_MLA</td><td>18.0</td><td>10.9</td><td>35</td><td class="g">91.4%</td><td class="o">8.6%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">294473281</td><td class="td-l">NYT SRL</td><td>ENVIOPACK_MLA</td><td>16.2</td><td>8.5</td><td>33</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">288878027</td><td class="td-l">CETROGAR SA</td><td>ANDREANI</td><td>11.1</td><td>5.6</td><td>27</td><td class="g">96.3%</td><td class="g">3.7%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">76441759</td><td class="td-l">JUSTCOOLTECH</td><td>ENVIOPACK_MLA</td><td>15.2</td><td>9.8</td><td>23</td><td class="g">91.3%</td><td class="o">8.7%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">238963275</td><td class="td-l">HERBO BATERIAS</td><td>ZIPPIN_MLA</td><td>15.2</td><td>9.6</td><td>22</td><td class="g">90.9%</td><td class="o">9.1%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">356489753</td><td class="td-l">TRDTECH_TODO_PARA_TU_HOGAR</td><td>ZIPPIN_MLA</td><td>12.9</td><td>6.9</td><td>22</td><td class="g">90.9%</td><td class="o">9.1%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">129918118</td><td class="td-l">HIDRONORTESANITARIOS</td><td>ANDREANI</td><td>10.4</td><td>3.5</td><td>20</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">149103262</td><td class="td-l">3BHOGAR</td><td>ZIPPIN_MLA</td><td>8.9</td><td>6.9</td><td>18</td><td class="g">94.4%</td><td class="g">5.6%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">15730337</td><td class="td-l">GRUPO MARQUEZ</td><td>ZIPPIN_MLA</td><td>10.6</td><td>8.0</td><td>16</td><td class="g">93.8%</td><td class="g">6.3%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">673721598</td><td class="td-l">TIENDABARDAHL</td><td>ZIPPIN_MLA</td><td>11.3</td><td>7.3</td><td>16</td><td class="g">93.8%</td><td class="g">6.3%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">2470037250</td><td class="td-l">ECOMMERCEBSAS</td><td>AXADO</td><td>17.5</td><td>7.5</td><td>15</td><td class="g">93.3%</td><td class="g">6.7%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">409748915</td><td class="td-l">GFS GROUP</td><td>ZIPPIN_MLA</td><td>8.5</td><td>4.7</td><td>15</td><td class="g">93.3%</td><td class="g">6.7%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">210524743</td><td class="td-l">ACCESORIOSJORGE EQUIPAMIENTOS</td><td>ANDREANI</td><td>11.1</td><td>3.9</td><td>15</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">419109423</td><td class="td-l">TIENDAOFICIALTEKA</td><td>ZIPPIN_MLA</td><td>12.3</td><td>7.8</td><td>14</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">188250434</td><td class="td-l">VENTASGOMATODO</td><td>ANDREANI</td><td>12.6</td><td>7.1</td><td>11</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1756710133</td><td class="td-l">HYOCLIMATIZACION</td><td>ANDREANI</td><td>9.7</td><td>3.9</td><td>10</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">2113727642</td><td class="td-l">DISPOTECH</td><td>ZIPPIN_MLA</td><td>5.3</td><td>4.1</td><td>10</td><td class="g">90.0%</td><td class="o">10.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">23472398</td><td class="td-l">IL_CAVALLINO</td><td>ZIPPIN_MLA</td><td>16.7</td><td>13.7</td><td>10</td><td class="g">90.0%</td><td class="o">10.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">217266944</td><td class="td-l">TRAMONTINA OFICIAL</td><td>ENVIOPACK_MLA</td><td>11.3</td><td>7.4</td><td>10</td><td class="g">90.0%</td><td class="o">10.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1835139252</td><td class="td-l">INDUSIDER</td><td>ANDREANI</td><td>6.9</td><td>3.5</td><td>10</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">815850761</td><td class="td-l">PEDITUSILLA</td><td>ZIPPIN_MLA</td><td>31.7</td><td>13.4</td><td>10</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">575763119</td><td class="td-l">3J S.C.I.</td><td>ZIPPIN_MLA</td><td>20.2</td><td>8.4</td><td>9</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">288890743</td><td class="td-l">TIENDALIQUITECH</td><td>ZIPPIN_MLA</td><td>12.0</td><td>6.9</td><td>7</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">56890877</td><td class="td-l">SUSPENSION-RICKY</td><td>ZIPPIN_MLA</td><td>15.0</td><td>6.3</td><td>6</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">474493158</td><td class="td-l">PEUGEOT AFTERMARKET</td><td>ZIPPIN_MLA</td><td>14.5</td><td>10.7</td><td>6</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">195243725</td><td class="td-l">ELECTRO--TIENDA</td><td>ZIPPIN_MLA</td><td>11.5</td><td>6.3</td><td>6</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">208765489</td><td class="td-l">FWW</td><td>ZIPPIN_MLA</td><td>12.2</td><td>7.7</td><td>6</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">155824396</td><td class="td-l">ENCENDIDO CAMPOMAR</td><td>ZIPPIN_MLA</td><td>15.4</td><td>9.2</td><td>5</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">213105376</td><td class="td-l">TELEARTELECTRO</td><td>ANDREANI</td><td>10.0</td><td>4.4</td><td>5</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">187924189</td><td class="td-l">MACOMAQUINASYHERRAMIENTAS</td><td>ANDREANI</td><td>13.2</td><td>7.4</td><td>5</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1283151922</td><td class="td-l">LAHIPERTIENDA</td><td>ZIPPIN_MLA</td><td>14.5</td><td>7.5</td><td>4</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">386558304</td><td class="td-l">MOHAMEDHOGAR</td><td>ANDREANI</td><td>11.7</td><td>5.7</td><td>3</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">2638030645</td><td class="td-l">MULTIMAKS</td><td>ZIPPIN_MLA</td><td>19.7</td><td>11.7</td><td>3</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">96303131</td><td class="td-l">ROCA_SOUND</td><td>ZIPPIN_MLA</td><td>14.3</td><td>9.0</td><td>3</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">146848871</td><td class="td-l">CASA-PARISI</td><td>ZIPPIN_MLA</td><td>8.7</td><td>6.3</td><td>3</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1198899488</td><td class="td-l">TEKBOND_SG</td><td>ZIPPIN_MLA</td><td>9.3</td><td>8.0</td><td>3</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1421988634</td><td class="td-l">ZONA DOS</td><td>ANDREANI</td><td>9.7</td><td>6.7</td><td>3</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">177792471</td><td class="td-l">AMOBLAMIENTOSVOSTOK</td><td>ZIPPIN_MLA</td><td>49.0</td><td>38.0</td><td>3</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">266533417</td><td class="td-l">DONDIGITAL</td><td>ECOMEXPERTS</td><td>10.0</td><td>6.0</td><td>2</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">2065655860</td><td class="td-l">CC20241028224707</td><td>ENVIOPACK_MLA</td><td>38.0</td><td>28.5</td><td>2</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">276703791</td><td class="td-l">DYPACCESORIOS</td><td>ENVIOPACK_MLA</td><td>20.5</td><td>15.5</td><td>2</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">118210398</td><td class="td-l">WRITINGINSTRUMENTSSHOPSRL</td><td>ZIPPIN_MLA</td><td>17.5</td><td>14.5</td><td>2</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">212332460</td><td class="td-l">NEUMOVIL</td><td>ZIPPIN_MLA</td><td>29.0</td><td>13.5</td><td>2</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">2303712525</td><td class="td-l">PROMETTOM</td><td>ENVIOPACK_MLA</td><td>17.5</td><td>9.5</td><td>2</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">346603797</td><td class="td-l">SEMIUQ RENOBA</td><td>ADMINISTRADO</td><td>18.5</td><td>8.0</td><td>2</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1189834725</td><td class="td-l">TIENDALUXCAR</td><td>ZIPPIN_MLA</td><td>12.0</td><td>9.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1221043</td><td class="td-l">HIDROMEC BOMBAS</td><td>AXADO</td><td>6.0</td><td>5.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">250019670</td><td class="td-l">NUEVACASAANTONIO BOEDO</td><td>ZIPPIN_MLA</td><td>9.0</td><td>7.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">25579221</td><td class="td-l">ROYALCORT</td><td>ZIPPIN_MLA</td><td>17.0</td><td>9.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">46119770</td><td class="td-l">HIDRAULICARUBBER</td><td>ENVIOPACK_MLA</td><td>14.0</td><td>7.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">20571188</td><td class="td-l">SUKSES_GROUP</td><td>ANDREANI</td><td>13.0</td><td>4.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">229800758</td><td class="td-l">LVMAQUINASOK</td><td>ANDREANI</td><td>10.0</td><td>9.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">238453005</td><td class="td-l">LUZA.STORE</td><td>ENVIOPACK_MLA</td><td>11.0</td><td>11.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">3216368955</td><td class="td-l">OUTLET_GASTROHOGAR</td><td>ZIPPIN_MLA</td><td>3.0</td><td>3.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">181892857</td><td class="td-l">ADRIANAHOGARYMUEBLES</td><td>ZIPPIN_MLA</td><td>20.0</td><td>11.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1116755955</td><td class="td-l">KOBE MACHINES</td><td>ZIPPIN_MLA</td><td>1.0</td><td>1.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">297066837</td><td class="td-l">MSP WEB</td><td>ZIPPIN_MLA</td><td>18.0</td><td>12.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">1513632400</td><td class="td-l">LIFE4H</td><td>ZIPPIN_MLA</td><td>20.0</td><td>20.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">214415943</td><td class="td-l">GALMUN</td><td>ANDREANI</td><td>8.0</td><td>4.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">39265670</td><td class="td-l">BH555SHOP</td><td>ZIPPIN_MLA</td><td>21.0</td><td>14.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">139113527</td><td class="td-l">IMPORT__BAIRES</td><td>ENVIOPACK_MLA</td><td>7.0</td><td>4.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+        <tr><td class="td-l">29922558</td><td class="td-l">MEJOR_COMPRA</td><td>ZIPPIN_MLA</td><td>22.0</td><td>8.0</td><td>1</td><td class="g">100.0%</td><td class="g">0.0%</td><td class="r">No</td><td class="o">Pendiente</td></tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="td-l" colspan="2">TOTAL WAVE 2</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>10,076</td>
+          <td>—</td><td>—</td>
+          <td class="r">0 notificados</td>
+          <td class="o">89 pendientes</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="callout callout-warn">
+    <strong>Estado Wave 2:</strong> Los 89 sellers fueron identificados y están listos para activación. Ninguno fue notificado aún (Seller fue notificado = FALSE). El volumen combinado es de 10,076 órdenes delivered con SLA promedio superior al 90%. El integrador predominante es ZIPPIN_MLA (~70% de los sellers).
+  </div>
+</div>
+
+
+<!-- ═══ RESUMEN EJECUTIVO ═══ -->
+<div class="section" id="resumen" style="margin-top:36px;">
+  <div class="section-title">📝 Resumen Ejecutivo</div>
+  <div class="summary">
+    <p>
+      <span class="chip">Iniciativa</span>
+      La <strong>Promesa Ventana ME1 MLA</strong> se activó el 7 de mayo 2026 en 80 sellers objetivo (69 con órdenes WINDOW confirmadas). Reemplaza la fecha fija de entrega por un rango de fechas calibrado al tiempo real de manejo y tránsito de cada seller.
+    </p>
+    <p>
+      <span class="chip">Resultados Wave 1</span>
+      En los primeros 30 días post-encendido: Early 67.7% → 56.2%, On Time 20.2% → 34.4%. Como consecuencia: <strong class="g">CR Buyer -24%</strong> (13.8% → 10.5%) y CR Entrega -29% (4.9% → 3.5%). El SLA OK alcanzó 90.7% vs 57.9% en sellers FIXED.
+    </p>
+    <p>
+      <span class="chip">Oportunidad</span>
+      El % On Time post-encendido (34.4%) tiene margen de mejora. El Early sigue alto (56.2%), indicando que el rango es todavía conservador para parte de los sellers activados. <strong>Acción inmediata:</strong> revisar la configuración de handling time en los sellers con Early &gt; 65% para afinar la ventana y subir On Time hacia 87%.
+    </p>
+    <p>
+      <span class="chip">Contexto total</span>
+      El Delay FIXED en mayo (42.1%) alcanza el máximo del año sin mejora orgánica en 5 meses. El universo WINDOW (9.4% de órdenes en mayo) muestra el camino: la única intervención que revertió la tendencia fue la Promesa Ventana.
+    </p>
+    <p style="border-top:1px solid var(--border);padding-top:12px;margin-top:4px;">
+    <strong>Línea de resumen:</strong> ME1 MLA tiene un Early crónico de ~48-49% y On Time de ~12-13% — la promesa fija está sobreestimando el tiempo de entrega. Wave 1 demostró que la ventana corrige esto: Early baja, On Time sube de 20% a 34%, y el CR Buyer cae un 24%. La prioridad es <strong>lanzar Wave 2</strong> para escalar la corrección al universo completo y alcanzar los targets: <strong>Early ≤ 10% · On Time ≥ 87%</strong>.
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Fuente: <code>meli-sbox.GROWTHCCME1.ME1_DM_ORD_SHP_CLAIM_DAY</code> · <code>ME1_DM_VIP_CONVERSION</code>
+  &nbsp;|&nbsp; SITE_ID = MLA · ME1 Operaciones Especiales · 15/06/2026 · Generado con Claude Code
+</div>
+
+</body>
+</html>
