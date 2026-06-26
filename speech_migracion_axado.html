@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Speech Migración Axado · Foco en Cancelaciones y NMV</title>
+<style>
+:root{
+  --ml-blue:#2D3277; --ml-yellow:#FFE600;
+  --green:#00A650; --red:#E02020; --orange:#FF7733;
+  --light:#F0F2F8; --border:#D8DAE5; --grey:#6C757D;
+  --text:#1A1A2E;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--light);color:var(--text);font-size:14px;}
+
+.header{background:var(--ml-blue);padding:28px 48px 22px;border-bottom:4px solid var(--ml-yellow);}
+.header h1{color:var(--ml-yellow);font-size:22px;font-weight:700;line-height:1.3;}
+.header p{color:#C0C8FF;font-size:12px;margin-top:6px;}
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;margin-top:8px;}
+.badge-y{background:var(--ml-yellow);color:var(--ml-blue);}
+.badge-r{background:var(--red);color:#fff;}
+
+.container{max-width:860px;margin:0 auto;padding:36px 48px;}
+
+/* SPEECH BLOCKS */
+.block{background:#fff;border-radius:14px;padding:32px 36px;margin-bottom:22px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);}
+.block.accent-blue  {border-left:5px solid var(--ml-blue);}
+.block.accent-red   {border-left:5px solid var(--red);}
+.block.accent-orange{border-left:5px solid var(--orange);}
+.block.accent-green {border-left:5px solid var(--green);}
+.block.accent-yellow{border-left:5px solid var(--ml-yellow);background:var(--ml-blue);}
+
+.block-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;
+  margin-bottom:14px;}
+.label-blue  {color:var(--ml-blue);}
+.label-red   {color:var(--red);}
+.label-orange{color:var(--orange);}
+.label-green {color:var(--green);}
+.label-yellow{color:var(--ml-yellow);}
+
+.speech{font-size:15px;line-height:1.9;color:var(--text);}
+.block.accent-yellow .speech{color:#C0C8FF;}
+
+/* INLINE EMPHASIS */
+strong.r{color:var(--red);}
+strong.g{color:var(--green);}
+strong.b{color:var(--ml-blue);}
+.block.accent-yellow strong.y{color:var(--ml-yellow);}
+
+/* DATA BOXES */
+.data-row{display:grid;gap:14px;margin:20px 0;}
+.data-row.cols-2{grid-template-columns:1fr 1fr;}
+.data-row.cols-3{grid-template-columns:1fr 1fr 1fr;}
+.data-box{border-radius:10px;padding:16px 18px;text-align:center;}
+.data-box.bad {background:#FEECEC;border:1.5px solid #FAA0A0;}
+.data-box.good{background:#E8F7ED;border:1.5px solid #86EFAC;}
+.data-box.neu {background:#EEF4FF;border:1.5px solid #93C5FD;}
+.data-box .big{font-size:28px;font-weight:800;line-height:1;margin-bottom:5px;}
+.data-box .lbl{font-size:11px;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:.3px;}
+.data-box .sub{font-size:11px;color:var(--grey);margin-top:4px;}
+
+/* DIVIDER */
+.divider{text-align:center;color:var(--grey);font-size:12px;font-weight:700;
+  letter-spacing:1px;margin:18px 0;}
+
+/* EQUATION */
+.eq{background:#F8F9FA;border-radius:10px;padding:18px 22px;font-family:'Consolas','Fira Code',monospace;
+  font-size:13px;line-height:2;margin:18px 0;border:1px solid var(--border);}
+.eq .comment{color:var(--grey);font-style:italic;}
+.eq .result{color:var(--green);font-weight:700;}
+.eq .result-red{color:var(--red);font-weight:700;}
+
+/* NOTE */
+.note{background:#EEF4FF;border-radius:8px;padding:12px 16px;font-size:12px;
+  line-height:1.6;margin-top:20px;border-left:3px solid var(--ml-blue);}
+
+.footer{background:var(--ml-blue);color:#8891CC;font-size:11px;text-align:center;
+  padding:14px;margin-top:4px;}
+.footer strong{color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Speech · Migración de Axado<br>
+  <span style="font-size:16px;color:#C0C8FF;font-weight:400;">Foco: cancelaciones logísticas y pérdida de NMV</span></h1>
+  <p>Datos reales · ME1 · MLA · Abril 2026 · Operaciones Especiales</p>
+  <span class="badge badge-y">KAM / Seller Dev</span>
+  <span class="badge badge-r">⚠ AXADO: APAGAR</span>
+</div>
+
+<div class="container">
+
+<!-- ===== 1. APERTURA ===== -->
+<div class="block accent-blue">
+  <div class="block-label label-blue">🎯 APERTURA — El número concreto</div>
+  <div class="speech">
+    "[Nombre], te quiero mostrar algo muy concreto que está pasando con tu negocio en Mercado Libre.<br><br>
+    No te voy a hablar de métricas de satisfacción ni de experiencia del comprador.
+    Te voy a hablar de <strong class="b">plata — ventas que estás generando y que después no estás cobrando.</strong>"
+  </div>
+</div>
+
+
+<!-- ===== 2. EL DIAGNÓSTICO ===== -->
+<div class="block accent-red">
+  <div class="block-label label-red">📊 EL DIAGNÓSTICO — Qué está pasando</div>
+  <div class="speech">
+    "Analizamos todos los integradores de ME1 en MLA durante abril 2026.
+    Encontramos que la tasa de cancelación se divide en dos partes muy distintas:<br><br>
+    <strong>Una parte que no depende del integrador</strong> — comprador arrepentido, sin stock, fraude.
+    Eso es alrededor del <strong class="b">2% para todos los integradores por igual.</strong>
+    No hay nada que hacer ahí.<br><br>
+    <strong>Otra parte que sí depende del integrador</strong> — paquetes que no llegan,
+    que llegan tarde, que se pierden en el camino. Ahí es donde se separan los mejores de los peores."
+  </div>
+
+  <div class="data-row cols-3" style="margin-top:20px;">
+    <div class="data-box bad">
+      <div class="big" style="color:var(--red);">6,95%</div>
+      <div class="lbl">Cancel logística · AXADO</div>
+      <div class="sub">el más alto del ecosistema</div>
+    </div>
+    <div class="data-box neu">
+      <div class="big" style="color:#4F8EF7;">5,07%</div>
+      <div class="lbl">Cancel logística · Ecomexperts</div>
+      <div class="sub">−1,88pp menos que Axado</div>
+    </div>
+    <div class="data-box good">
+      <div class="big" style="color:var(--green);">4,95%</div>
+      <div class="lbl">Cancel logística · Enviopack</div>
+      <div class="sub">el mejor del ecosistema</div>
+    </div>
+  </div>
+
+  <div class="speech" style="margin-top:18px;">
+    "Con Axado, <strong class="r">el 6,95% de tus órdenes se cancela por logística.</strong>
+    El mejor integrador lo tiene en 4,95%. Esa diferencia de 2 puntos porcentuales
+    parece chica — pero en tu volumen, son <strong class="r">170 órdenes canceladas por mes
+    que no deberían cancelarse.</strong>"
+  </div>
+</div>
+
+
+<!-- ===== 3. POR QUÉ CANCELA AXADO ===== -->
+<div class="block accent-orange">
+  <div class="block-label label-orange">🔍 EL POR QUÉ — Los números exactos y lo que perdés en cada caso</div>
+
+  <!-- FUNNEL PRINCIPAL -->
+  <div style="background:#F8F9FA;border-radius:12px;padding:20px 24px;margin-bottom:20px;border:1px solid var(--border);">
+
+    <div style="font-size:13px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;">Axado · Abril 2026 · Funnel de órdenes</div>
+
+    <!-- TOTAL -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px;">
+      <div style="width:200px;font-size:13px;font-weight:600;color:var(--ml-blue);">Total órdenes</div>
+      <div style="flex:1;background:#2D3277;border-radius:6px;height:36px;display:flex;align-items:center;padding:0 14px;">
+        <span style="color:#fff;font-weight:800;font-size:15px;">8.524 órdenes</span>
+      </div>
+    </div>
+
+    <div style="width:200px;text-align:right;font-size:20px;color:var(--grey);padding-right:14px;line-height:1;">↓</div>
+
+    <!-- CANCELADAS -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px;">
+      <div style="width:200px;font-size:13px;font-weight:600;color:#495057;">Canceladas (total)</div>
+      <div style="flex:1;background:#495057;border-radius:6px;height:36px;display:flex;align-items:center;padding:0 14px;justify-content:space-between;">
+        <span style="color:#fff;font-weight:800;font-size:15px;">768 canceladas</span>
+        <span style="color:#adb5bd;font-size:12px;">= 9,0% del total</span>
+      </div>
+    </div>
+
+    <div style="width:200px;text-align:right;font-size:20px;color:var(--grey);padding-right:14px;line-height:1;">↓</div>
+
+    <!-- MEDIACIONES TOTALES -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px;">
+      <div style="width:200px;font-size:13px;font-weight:600;color:#495057;">Por mediación<br><span style="font-weight:400;font-size:11px;">(MELI intervino)</span></div>
+      <div style="flex:1;background:#495057;border-radius:6px;height:36px;display:flex;align-items:center;padding:0 14px;justify-content:space-between;">
+        <span style="color:#fff;font-weight:800;font-size:15px;">725 mediaciones</span>
+        <span style="color:#adb5bd;font-size:12px;">= 94% de las canceladas</span>
+      </div>
+    </div>
+
+    <div style="width:200px;text-align:right;font-size:20px;color:var(--grey);padding-right:14px;line-height:1;">↓</div>
+
+    <!-- LOGÍSTICAS (atribuibles al integrador) -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+      <div style="width:200px;font-size:13px;font-weight:600;color:var(--red);">Motivo logístico<br><span style="font-weight:400;font-size:11px;">atribuible al integrador</span></div>
+      <div style="flex:1;background:var(--red);border-radius:6px;height:44px;display:flex;align-items:center;padding:0 14px;justify-content:space-between;">
+        <span style="color:#fff;font-weight:800;font-size:16px;">592 mediaciones logísticas</span>
+        <span style="color:rgba(255,255,255,.75);font-size:12px;">= 6,95% del total · entrega tardía · no entregado · última milla</span>
+      </div>
+    </div>
+
+    <!-- LINEA SEPARADORA -->
+    <div style="border-top:2px dashed var(--border);margin:4px 0 16px;"></div>
+    <div style="font-size:12px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;">
+      De las 592 mediaciones logísticas — estado del envío al cancelar:
+    </div>
+
+    <!-- DELIVERED -->
+    <div style="display:flex;align-items:stretch;gap:14px;margin-bottom:8px;">
+      <div style="width:200px;font-size:12px;font-weight:700;color:var(--red);display:flex;flex-direction:column;justify-content:center;">
+        📦 DELIVERED<br>
+        <span style="font-weight:400;color:var(--grey);font-size:11px;">Ya entregado al buyer</span>
+      </div>
+      <div style="flex:1;background:#FEECEC;border:1.5px solid #FAA0A0;border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center;">
+        <div>
+          <div style="font-size:26px;font-weight:800;color:var(--red);">100</div>
+          <div style="font-size:11px;color:var(--grey);">órdenes · 13,8%</div>
+          <div style="font-size:12px;font-weight:700;color:var(--red);margin-top:4px;">$32.200 USD</div>
+        </div>
+        <div style="font-size:13px;line-height:1.8;">
+          El comprador ya tiene el producto en su casa cuando MELI resuelve la mediación.<br>
+          <strong style="color:var(--red);">Perdés el producto porque el comprador lo tiene, y también perdés la venta.</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHIPPED -->
+    <div style="display:flex;align-items:stretch;gap:14px;margin-bottom:8px;">
+      <div style="width:200px;font-size:12px;font-weight:700;color:var(--orange);display:flex;flex-direction:column;justify-content:center;">
+        🚛 SHIPPED<br>
+        <span style="font-weight:400;color:var(--grey);font-size:11px;">En camino al cancelar</span>
+      </div>
+      <div style="flex:1;background:#FFF3E8;border:1.5px solid #FFCC99;border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center;">
+        <div>
+          <div style="font-size:26px;font-weight:800;color:var(--orange);">235</div>
+          <div style="font-size:11px;color:var(--grey);">órdenes · 32,4%</div>
+          <div style="font-size:12px;font-weight:700;color:var(--orange);margin-top:4px;">$75.670 USD</div>
+        </div>
+        <div style="font-size:13px;line-height:1.8;">
+          El paquete ya salió del depósito cuando MELI cancela la orden.<br>
+          El carrier no sabe que la orden fue cancelada y sigue la ruta — en muchos casos el comprador lo recibe de todas formas.<br>
+          <strong style="color:var(--orange);">Perdés la venta. Y en muchos casos también el producto, porque el comprador lo recibe igual sin obligación de devolverlo.</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- PENDING -->
+    <div style="display:flex;align-items:stretch;gap:14px;margin-bottom:12px;">
+      <div style="width:200px;font-size:12px;font-weight:700;color:#495057;display:flex;flex-direction:column;justify-content:center;">
+        ⏸ PENDING<br>
+        <span style="font-weight:400;color:var(--grey);font-size:11px;">Nunca despachado</span>
+      </div>
+      <div style="flex:1;background:#F1F3F5;border:1.5px solid #CED4DA;border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center;">
+        <div>
+          <div style="font-size:26px;font-weight:800;color:#495057;">390</div>
+          <div style="font-size:11px;color:var(--grey);">órdenes · 53,8%</div>
+          <div style="font-size:10px;color:var(--grey);">(388 pending + 2 en devolución)</div>
+          <div style="font-size:12px;font-weight:700;color:#495057;margin-top:4px;">$125.580 USD</div>
+        </div>
+        <div style="font-size:13px;line-height:1.8;">
+          Axado nunca coordinó el despacho — la orden se trabó antes de salir. Las 2 restantes estaban en proceso de devolución al seller.<br>
+          <strong style="color:#495057;">Recuperás el stock porque el producto nunca llegó al comprador. Pero perdés la venta, el tiempo, y la confianza del comprador.</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTAL -->
+    <div style="display:flex;align-items:center;gap:14px;border-top:2px solid var(--ml-blue);padding-top:12px;">
+      <div style="width:200px;font-size:13px;font-weight:800;color:var(--ml-blue);">TOTAL</div>
+      <div style="flex:1;background:var(--ml-blue);border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;">
+        <div style="color:#fff;">
+          <div style="font-size:18px;font-weight:800;">592 mediaciones logísticas</div>
+          <div style="font-size:12px;color:#C0C8FF;margin-top:4px;">= 6,95% del total · directamente atribuibles a Axado</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:2px;">+ 133 por otras razones (ocurren con cualquier integrador)</div>
+        </div>
+        <div style="color:#C0C8FF;font-size:13px;line-height:1.7;">
+          En los casos donde el producto ya llegó o estaba en camino,<br>
+          <strong style="color:var(--ml-yellow);">la venta se cancela y el comprador se queda con la mercadería.</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="speech">
+    "<strong>La causa raíz es siempre la misma:</strong>
+    Axado no tiene flete dinámico — no puede calcular ni comprometerse con una fecha de entrega.
+    Sin esa promesa, cuando algo falla no hay nada que defender ante MELI y la mediación se pierde.
+    Con un integrador que sí tiene flete dinámico, el comprador sabe desde el principio cuándo llega
+    — y si llega dentro de esa ventana, no hay reclamo posible."
+  </div>
+</div>
+
+
+<!-- ===== 4. EL NMV PERDIDO ===== -->
+<div class="block accent-red">
+  <div class="block-label label-red">💸 LO QUE SE PIERDE — El NMV que no cobrás</div>
+  <div class="speech">
+    "Pasemos a los números. Con un ticket promedio de $322 USD y 8.500 órdenes por mes:"
+  </div>
+
+  <div class="eq">
+    <span class="comment">-- Cancelaciones atribuibles a Axado como integrador --</span><br>
+    8.524 órdenes × 6,95% cancel logística = <span class="result-red">592 órdenes canceladas/mes</span><br>
+    <span class="comment">-- Las mismas órdenes con el mejor integrador --</span><br>
+    8.524 órdenes × 4,95% cancel logística = <span class="result">422 órdenes canceladas/mes</span><br><br>
+    <span class="comment">-- La diferencia: órdenes que no deberían cancelarse --</span><br>
+    592 − 422 = <span class="result-red">170 órdenes × $322 = $54.900 USD/mes perdidos</span><br><br>
+    <span class="comment">-- Anualizado --</span><br>
+    $54.900 × 12 = <span class="result-red">$658.800 USD/año de NMV que el integrador te está costando</span>
+  </div>
+
+  <div class="speech">
+    "Y eso es solo el efecto directo de las cancelaciones.
+    Si además mejorás el CVR efectivo — porque Enviopack convierte mejor al tener precio
+    de envío visible —
+    el upside total sube a <strong class="r">$344.000 USD por mes, o $4,1M por año.</strong>"
+  </div>
+
+  <div class="data-row cols-2" style="margin-top:20px;">
+    <div class="data-box bad">
+      <div class="big" style="color:var(--red);">$659K</div>
+      <div class="lbl">NMV perdido/año por cancel logística</div>
+      <div class="sub">solo por las cancelaciones evitables</div>
+    </div>
+    <div class="data-box good">
+      <div class="big" style="color:var(--green);">$4,1M</div>
+      <div class="lbl">NMV recuperable/año total</div>
+      <div class="sub">cancel + CVR mejorado con flete dinámico</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== 5. LA COMPARACIÓN JUSTA ===== -->
+<div class="block accent-blue">
+  <div class="block-label label-blue">⚖️ LA COMPARACIÓN — Lo que no cambia y lo que sí</div>
+  <div class="speech">
+    "Algo importante: hicimos el análisis y encontramos que con Axado convertís bien —
+    sos el segundo mejor CVR del ecosistema ME1. Eso no es Axado, eso sos vos —
+    tu publicación, tu precio, tu reputación.<br><br>
+    Esa capacidad de conversión la vas a mantener cuando migrés.
+    Lo que va a cambiar es lo que pasa <em>después</em> de que el comprador compra:<br>"
+  </div>
+
+  <div style="margin:20px 0;display:flex;flex-direction:column;gap:12px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div style="background:#FEECEC;border-radius:10px;padding:14px;border:1.5px solid #FAA0A0;">
+        <div style="font-size:11px;font-weight:700;color:var(--red);margin-bottom:8px;">HOY · AXADO</div>
+        <div style="font-size:13px;line-height:1.8;">
+          ❌ 6,95% de órdenes canceladas por logística<br>
+          ❌ 60% de entregas llegan tarde<br>
+          ❌ Sin fecha de entrega prometida<br>
+          ❌ Sin tracking en tiempo real<br>
+          ❌ Afuera de FastShips (julio) y BuyBox (sept.)
+        </div>
+      </div>
+      <div style="background:#E8F7ED;border-radius:10px;padding:14px;border:1.5px solid #86EFAC;">
+        <div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:8px;">CON ENVIOPACK / ECOMEXPERTS</div>
+        <div style="font-size:13px;line-height:1.8;">
+          ✅ 4,95% cancel logística (−2pp menos)<br>
+          ✅ 20% Delay (vs 60% Axado)<br>
+          ✅ Fecha de entrega visible en el anuncio<br>
+          ✅ Tracking automático para el comprador<br>
+          ✅ FastShips y BuyBox desde julio/sept.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== 6. CIERRE ===== -->
+<div class="block accent-yellow">
+  <div class="block-label label-yellow">💬 CIERRE — La pregunta que cierra</div>
+  <div class="speech">
+    "El resumen en números concretos:<br><br>
+    Tu negocio genera <strong class="y">$2.49M de ventas por mes</strong> con Axado.
+    De eso, <strong class="y">$55.000 por mes se pierden en cancelaciones que no deberían ocurrir</strong> —
+    órdenes donde el comprador compró, vos despachaste o ibas a despachar,
+    y Axado no pudo cumplir con la entrega. MELI cancela la orden y el comprador recupera su dinero — esa venta nunca te la acreditaron.
+    Son <strong class="y">$659.000 al año</strong> que facturás pero no cobrás.<br><br>
+    No es un problema de tu producto. No es un problema de tu precio.
+    Es un problema de infraestructura logística — y tiene solución.<br><br>
+    Migrar a Enviopack o Ecomexperts se hace en menos de 2 semanas y no tiene costo fijo relevante.
+    <strong class="y">El único costo real es el de quedarse: $55.000 por mes.</strong><br><br>
+    ¿Arrancamos hoy?"
+  </div>
+</div>
+
+
+<!-- NOTA DE DATOS -->
+<div class="note">
+  <strong>Datos de referencia (Abril 2026 · ME1 · MLA · fuente: ME1_DM_ORD_SHP_CLAIM_DAY):</strong><br>
+  Axado: 8.524 órdenes · $2.494.067 NMV · ticket $322 · cancel logística 6,95% · cancel no-logística 2,06% ·
+  Delay 60,2% · SLA 37,4% ·
+  Enviopack: cancel logística 4,95% · Delay 20,3% · SLA 76,6% ·
+  Ecomexperts: cancel logística 5,07% · Delay 31,8% · SLA 60,4%
+</div>
+
+</div>
+
+<div class="footer">
+  Datos reales · <strong>ME1_DM_ORD_SHP_CLAIM_DAY + BT_CM_CLAIMS_V1</strong> ·
+  MLA · Abril 2026 · Operaciones Especiales · Claude Code · Junio 2026
+</div>
+
+</body>
+</html>
