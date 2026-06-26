@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Speech Migración · SIMMONS ARGENTINA · 211173358</title>
+<style>
+:root{
+  --ml-blue:#2D3277; --ml-yellow:#FFE600;
+  --green:#00A650; --red:#E02020; --orange:#FF7733;
+  --light:#F0F2F8; --border:#D8DAE5; --grey:#6C757D; --text:#1A1A2E;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--light);color:var(--text);font-size:14px;}
+
+.header{background:var(--ml-blue);padding:26px 48px 20px;border-bottom:4px solid var(--ml-yellow);}
+.header h1{color:var(--ml-yellow);font-size:20px;font-weight:700;line-height:1.3;}
+.header .seller{color:#fff;font-size:24px;font-weight:800;margin-bottom:4px;}
+.header p{color:#C0C8FF;font-size:12px;margin-top:4px;}
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;margin-top:6px;}
+.badge-y{background:var(--ml-yellow);color:var(--ml-blue);}
+.badge-r{background:var(--red);color:#fff;}
+
+.container{max-width:860px;margin:0 auto;padding:32px 48px;}
+
+.block{background:#fff;border-radius:14px;padding:28px 32px;margin-bottom:20px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);}
+.block.accent-blue  {border-left:5px solid var(--ml-blue);}
+.block.accent-red   {border-left:5px solid var(--red);}
+.block.accent-orange{border-left:5px solid var(--orange);}
+.block.accent-green {border-left:5px solid var(--green);}
+.block.accent-yellow{border-left:5px solid var(--ml-yellow);background:var(--ml-blue);}
+
+.block-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.label-blue  {color:var(--ml-blue);}
+.label-red   {color:var(--red);}
+.label-orange{color:var(--orange);}
+.label-green {color:var(--green);}
+.label-yellow{color:var(--ml-yellow);}
+
+.speech{font-size:15px;line-height:1.9;color:var(--text);}
+.block.accent-yellow .speech{color:#C0C8FF;}
+
+strong.r{color:var(--red);}
+strong.g{color:var(--green);}
+strong.b{color:var(--ml-blue);}
+strong.y{color:var(--ml-yellow);}
+strong.o{color:var(--orange);}
+
+/* TREND TABLE */
+.trend{width:100%;border-collapse:collapse;font-size:12.5px;margin:18px 0;}
+.trend thead th{background:var(--ml-blue);color:#fff;padding:8px 12px;text-align:center;font-size:11px;}
+.trend thead th:first-child{text-align:left;}
+.trend tbody td{padding:9px 12px;text-align:center;border-bottom:1px solid var(--border);}
+.trend tbody td:first-child{text-align:left;font-weight:700;}
+.trend tbody tr:nth-child(3){background:#FFF3E8;}
+.trend .bad{color:var(--red);font-weight:700;}
+.trend .good{color:var(--green);font-weight:700;}
+.trend .warn{color:var(--orange);font-weight:700;}
+
+/* FUNNEL */
+.funnel-row{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+.funnel-label{width:190px;font-size:12px;font-weight:600;flex-shrink:0;}
+.funnel-bar{flex:1;border-radius:6px;height:38px;display:flex;align-items:center;
+  padding:0 14px;justify-content:space-between;}
+.funnel-arrow{width:190px;text-align:right;font-size:18px;color:var(--grey);padding-right:12px;line-height:1;}
+
+/* STATUS CARDS */
+.status-grid{display:flex;flex-direction:column;gap:8px;margin:14px 0;}
+.scard{border-radius:8px;padding:10px 14px;display:grid;grid-template-columns:80px 1fr;gap:12px;align-items:center;}
+.scard.delivered{background:#FEECEC;border:1.5px solid #FAA0A0;}
+.scard.shipped  {background:#FFF3E8;border:1.5px solid #FFCC99;}
+.scard.pending  {background:#F1F3F5;border:1.5px solid #CED4DA;}
+.scard .qty{font-size:24px;font-weight:800;line-height:1;}
+.scard .qty.r{color:var(--red);}
+.scard .qty.o{color:var(--orange);}
+.scard .qty.g{color:#495057;}
+
+/* EQ */
+.eq{background:#1E1E2E;border-radius:10px;padding:16px 20px;font-family:monospace;
+  font-size:12.5px;line-height:2;margin:16px 0;color:#CDD6F4;}
+.eq .c{color:#585B70;font-style:italic;}
+.eq .v{color:#FAB387;font-weight:700;}
+.eq .ok{color:#A6E3A1;font-weight:700;}
+
+/* COMPARE */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}
+.cmp-box{border-radius:10px;padding:14px 16px;}
+.cmp-box.now {background:#FEECEC;border:1.5px solid #FAA0A0;}
+.cmp-box.after{background:#E8F7ED;border:1.5px solid #86EFAC;}
+.cmp-box h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
+.cmp-box.now h4{color:var(--red);}
+.cmp-box.after h4{color:var(--green);}
+.cmp-box p{font-size:13px;line-height:1.8;}
+
+.note{background:#EEF4FF;border-radius:8px;padding:12px 16px;font-size:12px;
+  line-height:1.6;margin-top:20px;border-left:3px solid var(--ml-blue);}
+
+.footer{background:var(--ml-blue);color:#8891CC;font-size:11px;text-align:center;padding:12px;}
+.footer strong{color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="seller">SIMMONS ARGENTINA</div>
+  <h1>Speech · Migración de Axado · Reporte personalizado</h1>
+  <p>Seller ID: 211173358 · Datos reales ME1 · MLA · Mar–May 2026</p>
+  <span class="badge badge-y">KAM / Seller Dev</span>
+  <span class="badge badge-r">⚠ Axado · Migración urgente</span>
+</div>
+
+<div class="container">
+
+<!-- ===== 1. APERTURA ===== -->
+<div class="block accent-blue">
+  <div class="block-label label-blue">🎯 APERTURA</div>
+  <div class="speech">
+    "SIMMONS, quiero mostrarte algo muy concreto sobre lo que está pasando con tu negocio en Mercado Libre.<br><br>
+    No te voy a hablar de métricas de satisfacción. Te voy a hablar de ventas que estás generando y que después no se concretan — porque tu integrador no puede cumplir con la entrega."
+  </div>
+</div>
+
+
+<!-- ===== 2. TU SITUACIÓN ===== -->
+<div class="block accent-red">
+  <div class="block-label label-red">📊 TU SITUACIÓN — Tres meses de datos reales</div>
+  <div class="speech" style="margin-bottom:16px;">
+    "Miremos qué pasó en los últimos tres meses en tu cuenta:"
+  </div>
+
+  <table class="trend">
+    <thead>
+      <tr>
+        <th style="text-align:left;">Mes</th>
+        <th>Órdenes</th>
+        <th>NMV</th>
+        <th>Canceladas</th>
+        <th>Mediaciones</th>
+        <th>CR Buyer</th>
+        <th>CR Entrega</th>
+        <th>Delay</th>
+        <th>SLA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mar-26</td>
+        <td>1.048</td>
+        <td>$634K</td>
+        <td>79</td>
+        <td>79</td>
+        <td class="bad">18,51%</td>
+        <td class="bad">6,68%</td>
+        <td class="bad">95,3%</td>
+        <td class="bad">2,6%</td>
+      </tr>
+      <tr>
+        <td>Abr-26</td>
+        <td>489</td>
+        <td>$327K</td>
+        <td>41</td>
+        <td>39</td>
+        <td class="warn">13,29%</td>
+        <td class="good">1,84%</td>
+        <td class="bad">93,6%</td>
+        <td class="bad">4,2%</td>
+      </tr>
+      <tr>
+        <td><strong>May-26 🔥</strong></td>
+        <td><strong>2.652</strong></td>
+        <td><strong>$1,92M</strong></td>
+        <td class="bad">167</td>
+        <td class="bad">162</td>
+        <td class="bad">29,49%</td>
+        <td class="bad">18,89%</td>
+        <td class="bad">92,4%</td>
+        <td class="bad">3,8%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="speech">
+    "Mayo fue tu mejor mes por volumen — Hot Sale triplicó tus órdenes a 2.652 y llegaste a $1,92M de NMV.
+    Pero con más volumen el problema se amplificó:
+    <strong class="r">29,49% de CR Buyer, 18,89% de CR Entrega y 92% de tus entregas llegan tarde.</strong>
+    Solo el 3,8% de tus envíos cumple con el SLA prometido."
+  </div>
+</div>
+
+
+<!-- ===== 3. POR QUÉ ===== -->
+<div class="block accent-orange">
+  <div class="block-label label-orange">🔍 POR QUÉ — Los números de mayo y lo que perdés en cada caso</div>
+
+  <div style="background:#F8F9FA;border-radius:12px;padding:18px 22px;margin-bottom:18px;border:1px solid var(--border);">
+
+    <div style="font-size:12px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;">Funnel de órdenes · SIMMONS ARGENTINA · Mayo 2026</div>
+
+    <div class="funnel-row">
+      <div class="funnel-label" style="color:var(--ml-blue);font-weight:700;">Total órdenes</div>
+      <div class="funnel-bar" style="background:#2D3277;">
+        <span style="color:#fff;font-weight:800;font-size:15px;">2.652 órdenes</span>
+        <span style="color:#C0C8FF;font-size:11px;">$1.922.319 NMV · ticket $774</span>
+      </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+
+    <div class="funnel-row">
+      <div class="funnel-label" style="color:#495057;font-weight:600;">Canceladas</div>
+      <div class="funnel-bar" style="background:#495057;">
+        <span style="color:#fff;font-weight:800;font-size:15px;">167 canceladas</span>
+        <span style="color:#adb5bd;font-size:11px;">= 6,3% del total</span>
+      </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+
+    <div class="funnel-row">
+      <div class="funnel-label" style="color:#495057;font-weight:600;">Por mediación</div>
+      <div class="funnel-bar" style="background:#6c757d;">
+        <span style="color:#fff;font-weight:800;font-size:15px;">162 mediaciones</span>
+        <span style="color:#dee2e6;font-size:11px;">= 97% de las canceladas</span>
+      </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+
+    <div class="funnel-row">
+      <div class="funnel-label" style="color:var(--red);font-weight:700;">Motivo logístico<br><span style="font-weight:400;font-size:11px;">atribuible al integrador</span></div>
+      <div class="funnel-bar" style="background:var(--red);height:44px;">
+        <span style="color:#fff;font-weight:800;font-size:16px;">153 mediaciones logísticas</span>
+        <span style="color:rgba(255,255,255,.75);font-size:11px;">= 5,77% del total · entrega tardía · no entregado · última milla</span>
+      </div>
+    </div>
+
+    <div style="border-top:2px dashed var(--border);margin:14px 0 12px;"></div>
+    <div style="font-size:12px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">
+      De esas 153 — estado del envío al momento de cancelar:
+    </div>
+
+    <!-- DELIVERED -->
+    <div style="display:flex;align-items:stretch;gap:14px;margin-bottom:8px;">
+      <div style="width:200px;font-size:12px;font-weight:700;color:var(--red);display:flex;flex-direction:column;justify-content:center;">
+        📦 DELIVERED<br>
+        <span style="font-weight:400;color:var(--grey);font-size:11px;">Ya entregado al buyer</span>
+      </div>
+      <div style="flex:1;background:#FEECEC;border:1.5px solid #FAA0A0;border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center;">
+        <div>
+          <div style="font-size:26px;font-weight:800;color:var(--red);">27</div>
+          <div style="font-size:11px;color:var(--grey);">órdenes · 16,8%</div>
+          <div style="font-size:12px;font-weight:700;color:var(--red);margin-top:4px;">$20.898 USD</div>
+        </div>
+        <div style="font-size:13px;line-height:1.8;">
+          El comprador ya tiene el producto en su casa cuando MELI resuelve la mediación.<br>
+          <strong style="color:var(--red);">Perdés el producto porque el comprador lo tiene, y también perdés la venta.</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHIPPED -->
+    <div style="display:flex;align-items:stretch;gap:14px;margin-bottom:8px;">
+      <div style="width:200px;font-size:12px;font-weight:700;color:var(--orange);display:flex;flex-direction:column;justify-content:center;">
+        🚛 SHIPPED<br>
+        <span style="font-weight:400;color:var(--grey);font-size:11px;">En camino al cancelar</span>
+      </div>
+      <div style="flex:1;background:#FFF3E8;border:1.5px solid #FFCC99;border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center;">
+        <div>
+          <div style="font-size:26px;font-weight:800;color:var(--orange);">56</div>
+          <div style="font-size:11px;color:var(--grey);">órdenes · 34,6%</div>
+          <div style="font-size:12px;font-weight:700;color:var(--orange);margin-top:4px;">$43.344 USD</div>
+        </div>
+        <div style="font-size:13px;line-height:1.8;">
+          El paquete ya salió del depósito cuando MELI cancela la orden.<br>
+          El carrier no sabe que la orden fue cancelada y sigue la ruta — en muchos casos el comprador lo recibe de todas formas.<br>
+          <strong style="color:var(--orange);">Perdés la venta. Y en muchos casos también el producto, porque el comprador lo recibe igual sin obligación de devolverlo.</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- PENDING -->
+    <div style="display:flex;align-items:stretch;gap:14px;margin-bottom:12px;">
+      <div style="width:200px;font-size:12px;font-weight:700;color:#495057;display:flex;flex-direction:column;justify-content:center;">
+        ⏸ PENDING<br>
+        <span style="font-weight:400;color:var(--grey);font-size:11px;">Nunca despachado</span>
+      </div>
+      <div style="flex:1;background:#F1F3F5;border:1.5px solid #CED4DA;border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center;">
+        <div>
+          <div style="font-size:26px;font-weight:800;color:#495057;">79</div>
+          <div style="font-size:11px;color:var(--grey);">órdenes · 48,6%</div>
+          <div style="font-size:10px;color:var(--grey);">(74 pending + 5 en devolución)</div>
+          <div style="font-size:12px;font-weight:700;color:#495057;margin-top:4px;">$61.146 USD</div>
+        </div>
+        <div style="font-size:13px;line-height:1.8;">
+          Axado nunca coordinó el despacho — la orden se trabó antes de salir. Las 5 restantes estaban en proceso de devolución al seller.<br>
+          <strong style="color:#495057;">Recuperás el stock porque el producto nunca llegó al comprador. Pero perdés la venta, el tiempo, y la confianza del comprador.</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTAL -->
+    <div style="display:flex;align-items:center;gap:14px;border-top:2px solid var(--ml-blue);padding-top:12px;">
+      <div style="width:200px;font-size:13px;font-weight:800;color:var(--ml-blue);">TOTAL</div>
+      <div style="flex:1;background:var(--ml-blue);border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;">
+        <div style="color:#fff;">
+          <div style="font-size:17px;font-weight:800;">153 mediaciones logísticas</div>
+          <div style="font-size:12px;color:#C0C8FF;margin-top:4px;">= 5,77% del total · directamente atribuibles a Axado</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:2px;">+ 9 por otras razones (ocurren con cualquier integrador)</div>
+        </div>
+        <div style="color:#C0C8FF;font-size:13px;line-height:1.7;">
+          En los casos donde el producto ya llegó o estaba en camino,<br>
+          <strong style="color:var(--ml-yellow);">la venta se cancela y el comprador se queda con la mercadería.</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="speech">
+    "<strong>La causa raíz:</strong> Axado no tiene flete dinámico. Sin una fecha de entrega prometida,
+    cuando la entrega falla no hay nada que defender ante MELI. Tu delay del 92% — 9 de cada 10 entregas
+    llegan tarde — lo confirma: Axado no puede comprometerse con fechas porque no puede cumplirlas."
+  </div>
+</div>
+
+
+<!-- ===== 4. NMV PERDIDO ===== -->
+<div class="block accent-red">
+  <div class="block-label label-red">💸 EL NMV QUE NO COBRÁS</div>
+  <div class="speech" style="margin-bottom:14px;">"Pasemos a lo concreto:"</div>
+
+  <div class="eq">
+    <span class="c">-- Mayo 2026 · cancelaciones atribuibles al integrador --</span><br>
+    153 cancelaciones logísticas × $774 ticket = <span class="v">$118.422 USD no cobrados en mayo</span><br><br>
+    <span class="c">-- Proyección anualizada --</span><br>
+    Si usamos abril como mes base (más estable, sin Hot Sale):<br>
+    ~28 cancelaciones logísticas × $731 = ~$20.468 USD/mes<br>
+    × 12 = <span class="v">~$245.600 USD/año de ventas que generaste pero no cobraste</span><br><br>
+    <span class="c">-- Doble pérdida en mayo (producto + venta) --</span><br>
+    83 órdenes (27 delivered + 56 shipped) × $774 = <span class="v">$64.242 USD donde el comprador probablemente se quedó con el producto</span>
+  </div>
+
+  <div class="speech">
+    "En mayo, con el Hot Sale, el problema explotó: 167 cancelaciones, 162 mediaciones.
+    Más volumen con el mismo integrador significa más cancelaciones, más pérdidas, más NMV que no se acredita."
+  </div>
+</div>
+
+
+<!-- ===== 5. COMPARACIÓN ===== -->
+<div class="block accent-blue">
+  <div class="block-label label-blue">⚖️ LO QUE CAMBIA CON UN BUEN INTEGRADOR</div>
+  <div class="speech" style="margin-bottom:16px;">
+    "Tus números hoy vs lo que tendrías con Enviopack o Ecomexperts:"
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-box now">
+      <h4>Hoy · Axado</h4>
+      <p>
+        ❌ Delay: <strong>92,4%</strong> — 9 de cada 10 entregas tarde<br>
+        ❌ SLA: <strong>3,8%</strong> — casi 0% cumplen la promesa<br>
+        ❌ CR Buyer: <strong>29,49%</strong> — casi 1 de cada 3 reclama<br>
+        ❌ CR Entrega: <strong>18,89%</strong> — el triple del ecosistema<br>
+        ❌ Sin precio de envío visible en el anuncio<br>
+        ❌ Sin fecha de entrega prometida<br>
+        ❌ Sin tracking para el comprador
+      </p>
+    </div>
+    <div class="cmp-box after">
+      <h4>Con Enviopack / Ecomexperts</h4>
+      <p>
+        ✅ Delay: <strong>~20%</strong> — referencia ecosistema ME1<br>
+        ✅ SLA: <strong>~77–84%</strong> — cumplimiento real de promesa<br>
+        ✅ CR Buyer: <strong>~15–17%</strong> — menos de la mitad<br>
+        ✅ CR Entrega: <strong>~6–7%</strong> — nivel del ecosistema<br>
+        ✅ Precio de envío calculado automático<br>
+        ✅ Fecha de entrega prometida visible<br>
+        ✅ FastShips (julio) y BuyBox (septiembre)
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== 6. CIERRE ===== -->
+<div class="block accent-yellow">
+  <div class="block-label label-yellow">💬 CIERRE</div>
+  <div class="speech">
+    "SIMMONS, el resumen en números concretos:<br><br>
+    Tu negocio genera <strong class="y">$1,92M de ventas en un mes de Hot Sale</strong> con Axado.
+    De eso, <strong class="y">153 órdenes se perdieron por motivos logísticos</strong> — ventas donde el comprador compró,
+    vos ibas a despachar o ya habías despachado, y Axado no pudo cumplir con la entrega.
+    La venta se cancela y esa plata nunca te la acreditan.<br><br>
+    Tu delay de 92% y tu SLA de 3,8% lo dicen todo: Axado no puede comprometerse con fechas
+    porque no puede cumplirlas. Y sin esa promesa, cada entrega tardía se convierte en una cancelación.<br><br>
+    No es un problema de tu producto — Simmons es una marca reconocida.
+    Es un problema de infraestructura logística. Y tiene solución.<br><br>
+    <strong class="y">Migrar a Enviopack o Ecomexperts se hace en menos de 2 semanas.
+    El único costo real es el de quedarse.</strong><br><br>
+    ¿Arrancamos hoy?"
+  </div>
+</div>
+
+<div class="note">
+  <strong>Datos de referencia · SIMMONS ARGENTINA · 211173358 · ME1 · MLA:</strong><br>
+  May-26: 2.652 órdenes · $1.922.319 NMV · ticket $774 · 162 mediaciones (6,1%) · 153 logísticas (5,77%) ·
+  27 delivered · 56 shipped · 79 pending+devol · CR Buyer 29,49% · CR Entrega 18,89% · Delay 92,4% · SLA 3,8%<br>
+  Abr-26: 489 órdenes · $327.619 NMV · 39 mediaciones · CR Buyer 13,29% · CR Entrega 1,84% · Delay 93,6%<br>
+  Mar-26: 1.048 órdenes · $634.627 NMV · 79 mediaciones · CR Buyer 18,51% · CR Entrega 6,68% · Delay 95,3%
+</div>
+
+</div>
+
+<div class="footer">
+  Datos reales · <strong>ME1_DM_ORD_SHP_CLAIM_DAY + BT_CM_CLAIMS_V1</strong> ·
+  SIMMONS ARGENTINA · ID 211173358 · MLA · Mar–May 2026 · Operaciones Especiales · Claude Code
+</div>
+
+</body>
+</html>
